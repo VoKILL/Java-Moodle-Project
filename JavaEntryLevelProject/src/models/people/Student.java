@@ -1,18 +1,19 @@
-package school.people;
+package models.people;
 
-import school.homework.grades.Grade;
-import school.people.interfaces.StudentInterface;
+import models.homework.grades.Grade;
+import models.people.interfaces.StudentInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student implements StudentInterface {
+public class Student extends User implements StudentInterface {
     private String name;
     private int age;
     private String studentId;
     private List<Grade> grades;
 
-    public Student(String name, int age, String studentId) {
+    public Student(String name, int age, String studentId, String username, String password, boolean isAdmin) {
+        super(username, password, isAdmin);
         setName(name);
         setAge(age);
         setStudentId(studentId);

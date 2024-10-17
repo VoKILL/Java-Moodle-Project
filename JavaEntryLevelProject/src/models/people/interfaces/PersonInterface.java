@@ -1,4 +1,4 @@
-package school.people.interfaces;
+package models.people.interfaces;
 
 public interface PersonInterface {
     String getName();

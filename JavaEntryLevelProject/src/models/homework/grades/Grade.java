@@ -1,8 +1,8 @@
-package school.homework.grades;
+package models.homework.grades;
 
-import school.homework.grades.interfaces.GradeInterface;
-import school.homework.Homework;
-import school.people.Student;
+import models.homework.grades.interfaces.GradeInterface;
+import models.homework.Homework;
+import models.people.Student;
 
 public class Grade implements GradeInterface {
     private Student student;

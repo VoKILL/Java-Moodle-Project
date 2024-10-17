@@ -1,7 +1,7 @@
-package school.homework;
+package models.homework;
 
-import school.homework.grades.Grade;
-import school.homework.interfaces.HomeworkInterface;
+import models.homework.grades.Grade;
+import models.homework.interfaces.HomeworkInterface;
 
 import java.util.ArrayList;
 import java.util.Date;

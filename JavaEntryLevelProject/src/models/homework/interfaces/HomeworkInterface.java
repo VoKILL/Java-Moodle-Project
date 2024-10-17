@@ -1,6 +1,6 @@
-package school.homework.interfaces;
+package models.homework.interfaces;
 
-import school.homework.grades.Grade;
+import models.homework.grades.Grade;
 
 import java.util.Date;
 import java.util.List;

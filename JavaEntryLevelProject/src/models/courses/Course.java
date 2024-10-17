@@ -1,9 +1,9 @@
-package school.courses;
+package models.courses;
 
-import school.courses.interfaces.CourseInterface;
-import school.homework.Homework;
-import school.people.Teacher;
-import school.people.Student;
+import models.courses.interfaces.CourseInterface;
+import models.homework.Homework;
+import models.people.Teacher;
+import models.people.Student;
 import java.util.ArrayList;
 import java.util.List;
 

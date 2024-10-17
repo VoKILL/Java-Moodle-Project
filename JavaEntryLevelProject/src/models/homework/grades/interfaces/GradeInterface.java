@@ -1,7 +1,7 @@
-package school.homework.grades.interfaces;
+package models.homework.grades.interfaces;
 
-import school.homework.Homework;
-import school.people.Student;
+import models.homework.Homework;
+import models.people.Student;
 
 public interface GradeInterface {
     Student getStudent();

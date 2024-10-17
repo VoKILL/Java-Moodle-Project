@@ -1,6 +1,6 @@
-package school.people.interfaces;
+package models.people.interfaces;
 
-import school.homework.grades.Grade;
+import models.homework.grades.Grade;
 
 import java.util.List;
 

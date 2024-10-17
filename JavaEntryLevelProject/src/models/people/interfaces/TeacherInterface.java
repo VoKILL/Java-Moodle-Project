@@ -1,4 +1,4 @@
-package school.people.interfaces;
+package models.people.interfaces;
 
 public interface TeacherInterface extends PersonInterface {
     String getSubject();

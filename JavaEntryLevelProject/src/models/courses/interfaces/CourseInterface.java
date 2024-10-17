@@ -1,8 +1,8 @@
-package school.courses.interfaces;
+package models.courses.interfaces;
 
-import school.homework.Homework;
-import school.people.Teacher;
-import school.people.Student;
+import models.homework.Homework;
+import models.people.Teacher;
+import models.people.Student;
 import java.util.List;
 
 public interface CourseInterface {

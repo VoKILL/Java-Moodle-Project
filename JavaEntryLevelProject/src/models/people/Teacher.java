@@ -1,13 +1,14 @@
-package school.people;
+package models.people;
 
-import school.people.interfaces.TeacherInterface;
+import models.people.interfaces.TeacherInterface;
 
-public class Teacher implements TeacherInterface {
+public class Teacher extends User implements TeacherInterface {
     private String name;
     private int age;
     private String subject;
 
-    public Teacher(String name, int age, String subject) {
+    public Teacher(String name, int age, String subject, String username, String password, boolean isAdmin) {
+        super(username, password, isAdmin);
         setName(name);
         setAge(age);
         setSubject(subject);
