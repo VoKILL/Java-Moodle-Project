@@ -1,106 +1,89 @@
 package models.courses;
 
-import models.courses.interfaces.CourseInterface;
-import models.homework.Homework;
-import models.people.Teacher;
-import models.people.Student;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Course implements CourseInterface {
+public class Course {
+    private int id;
     private String courseName;
-    private String courseCode;
-    private Teacher teacher;
-    private List<Student> students;
-    private List<Homework> homeworks;
+    private int teacherId;
+    private Set<Integer> studentIds;
+    private Set<Integer> homeworkIds;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Course(String courseName, String courseCode, Teacher teacher) {
-        setCourseName(courseName);
-        setCourseCode(courseCode);
-        setTeacher(teacher);
-        this.students = new ArrayList<>();
-        this.homeworks = new ArrayList<>();
+    public Course(int id, String courseName, int teacherId, LocalDate startDate, LocalDate endDate) {
+        this.id = id;
+        this.courseName = courseName;
+        this.teacherId = teacherId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.studentIds = new HashSet<>();
+        this.homeworkIds = new HashSet<>();
     }
 
-    @Override
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCourseName() {
         return courseName;
     }
 
-    @Override
     public void setCourseName(String courseName) {
-        if (courseName == null || courseName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Course name cannot be null or empty.");
-        }
         this.courseName = courseName;
     }
 
-    @Override
-    public String getCourseCode() {
-        return courseCode;
+    public int getTeacherId() {
+        return teacherId;
     }
 
-    @Override
-    public void setCourseCode(String courseCode) {
-        if (courseCode == null || courseCode.trim().isEmpty()) {
-            throw new IllegalArgumentException("Course code cannot be null or empty.");
-        }
-        this.courseCode = courseCode;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
-    @Override
-    public Teacher getTeacher() {
-        return teacher;
+    public Set<Integer> getStudentIds() {
+        return studentIds;
     }
 
-    @Override
-    public void setTeacher(Teacher teacher) {
-        if (teacher == null) {
-            throw new IllegalArgumentException("Teacher cannot be null.");
-        }
-        this.teacher = teacher;
+    public void addStudentId(int studentId) {
+        this.studentIds.add(studentId);
     }
 
-    @Override
-    public List<Student> getStudents() {
-        return students;
+    public void removeStudentId(int studentId) {
+        this.studentIds.remove(studentId);
     }
 
-    @Override
-    public void addStudent(Student student) {
-
-        if (student == null) {
-            throw new IllegalArgumentException("Student cannot be null.");
-        }
-        if (!students.contains(student)) {
-            students.add(student);
-        }
+    public Set<Integer> getHomeworkIds() {
+        return homeworkIds;
     }
 
-    @Override
-    public void removeStudent(Student student) {
-        students.remove(student);
+    public void addHomeworkId(int homeworkId) {
+        this.homeworkIds.add(homeworkId);
     }
 
-    @Override
-    public List<Homework> getHomeworks() {
-        return homeworks;
+    public void removeHomeworkId(int homeworkId) {
+        this.homeworkIds.remove(homeworkId);
     }
 
-    @Override
-    public void addHomework(Homework homework) {
-        // Валидация на домашната работа
-        if (homework == null) {
-            throw new IllegalArgumentException("Homework cannot be null.");
-        }
-        if (!homeworks.contains(homework)) {
-            homeworks.add(homework);
-        }
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    @Override
-    public void removeHomework(Homework homework) {
-        homeworks.remove(homework);
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 }
