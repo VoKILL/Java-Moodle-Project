@@ -1,25 +1,40 @@
 package models.people;
 
-public abstract class User {
-    private String username;
+import models.people.interfaces.Identifiable;
+
+public class User implements Identifiable {
+    private int id;
+    private String email;
     private String password;
     private boolean isAdmin;
+    private boolean isBlocked;
+    private boolean isDeleted;
 
-    public User(String username, String password, boolean isAdmin) {
-        setUsername(username);
-        setPassword(password);
+    public User(int id, String email, String password, boolean isAdmin) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
         this.isAdmin = isAdmin;
+        this.isBlocked = false;
+        this.isDeleted = false;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        if (username == null || username.trim().isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be null or empty.");
-        }
-        this.username = username;
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -27,13 +42,30 @@ public abstract class User {
     }
 
     public void setPassword(String password) {
-        if (password == null || password.length() < 6) {
-            throw new IllegalArgumentException("Password must be at least 6 characters long.");
-        }
         this.password = password;
     }
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean isBlocked) {
+        this.isBlocked = isBlocked;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
