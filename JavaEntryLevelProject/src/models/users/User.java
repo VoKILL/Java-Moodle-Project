@@ -1,5 +1,6 @@
 package models.users;
 
+import constants.GlobalConstants;
 import models.users.interfaces.Identifiable;
 
 public class User implements Identifiable {
@@ -10,11 +11,11 @@ public class User implements Identifiable {
     private boolean isBlocked;
     private boolean isDeleted;
 
-    public User(int id, String email, String password, boolean isAdmin) {
-        this.id = id;
+    public User(String email, String password) {
+        this.id = GlobalConstants.generateUserId();
         this.email = email;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.isAdmin = false;
         this.isBlocked = false;
         this.isDeleted = false;
     }

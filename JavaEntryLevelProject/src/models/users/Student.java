@@ -1,5 +1,7 @@
 package models.users;
 
+import constants.GlobalConstants;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,9 +10,9 @@ public class Student extends User {
     private Set<Integer> courseIds;
     private Set<Integer> gradeIds;
 
-    public Student(int id, String email, String password, String studentId) {
-        super(id, email, password, false);
-        this.studentId = studentId;
+    public Student(String email, String password) {
+        super(email, password);
+        this.studentId = GlobalConstants.generateStudentId();
         this.courseIds = new HashSet<>();
         this.gradeIds = new HashSet<>();
     }

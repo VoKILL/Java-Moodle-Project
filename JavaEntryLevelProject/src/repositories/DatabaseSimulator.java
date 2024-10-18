@@ -23,15 +23,7 @@ public class DatabaseSimulator {
     }
 
     private void initializeData() {
-        Teacher teacher = new Teacher(1, "teacher@example.com", "password", "Mathematics");
-        Student student = new Student(2, "student@example.com", "password", "S12345");
-        Course course = new Course(1, "Math 101", teacher.getId(), java.time.LocalDate.now(), java.time.LocalDate.now().plusMonths(3));
-        Homework homework = new Homework(1, "Algebra Assignment", "Solve algebraic equations", course.getId(), student.getId(), java.time.LocalDate.now().plusWeeks(1), 0);
-
-        users.put(teacher.getId(), teacher);
-        users.put(student.getId(), student);
-        courses.put(course.getId(), course);
-        homeworks.put(homework.getId(), homework);
+        //TODO: Initialize data
     }
 
     public Map<Integer, User> getUsers() {
