@@ -1,4 +1,4 @@
-package models.people.interfaces;
+package models.users.interfaces;
 
 public interface Identifiable {
     int getId();

@@ -1,6 +1,6 @@
-package models.people;
+package models.users;
 
-import models.people.interfaces.Identifiable;
+import models.users.interfaces.Identifiable;
 
 public class User implements Identifiable {
     private int id;
