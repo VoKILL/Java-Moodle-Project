@@ -13,14 +13,14 @@ public class Homework {
     private LocalDate dueDate;
     private double grade;
 
-    public Homework(String title, String description, int courseId, int studentId, LocalDate dueDate, double grade) {
+    public Homework(String title, String description, int courseId, int studentId, LocalDate dueDate) {
         this.id = GlobalConstants.generateHomeworkId();
         this.title = title;
         this.description = description;
         this.courseId = courseId;
         this.studentId = studentId;
         this.dueDate = dueDate;
-        this.grade = grade;
+        this.grade = -1;
     }
 
     public int getId() {
