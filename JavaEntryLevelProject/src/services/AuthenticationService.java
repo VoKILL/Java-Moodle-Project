@@ -2,6 +2,7 @@ package services;
 
 import models.users.User;
 import repositories.DatabaseSimulator;
+import repositories.interfaces.UserRepositoryInterface;
 import services.interfaces.AuthenticationServiceInterface;
 
 import java.util.HashMap;
@@ -10,17 +11,17 @@ import java.util.Map;
 
 public class AuthenticationService implements AuthenticationServiceInterface {
     private Map<Integer, String> authenticatedUsers;
+    private UserRepositoryInterface userRepository;
 
-    private DatabaseSimulator database;
 
-    public AuthenticationService(DatabaseSimulator database) {
-        this.database = database;
+    public AuthenticationService(UserRepositoryInterface userRepository) {
+        this.userRepository = userRepository;
         this.authenticatedUsers = new HashMap<>();
     }
 
     @Override
     public boolean authenticate(String email, String password) {
-        for (User user : database.getUsers().values()) {
+        for (User user : userRepository.getAllUsers().values()) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 String token = generateToken(user.getId());
                 authenticatedUsers.put(user.getId(), token);

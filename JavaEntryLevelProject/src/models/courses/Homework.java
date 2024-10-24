@@ -1,7 +1,5 @@
 package models.courses;
 
-import constants.GlobalConstants;
-
 import java.time.LocalDate;
 
 public class Homework {
@@ -13,8 +11,8 @@ public class Homework {
     private LocalDate dueDate;
     private double grade;
 
-    public Homework(String title, String description, int courseId, int studentId, LocalDate dueDate) {
-        this.id = GlobalConstants.generateHomeworkId();
+    public Homework(int id, String title, String description, int courseId, int studentId, LocalDate dueDate) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.courseId = courseId;

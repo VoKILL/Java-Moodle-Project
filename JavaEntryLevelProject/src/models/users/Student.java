@@ -10,8 +10,8 @@ public class Student extends User {
     private Set<Integer> courseIds;
     private Set<Integer> gradeIds;
 
-    public Student(String email, String password) {
-        super(email, password);
+    public Student(int id, String email, String password) {
+        super(id, email, password);
         this.studentId = GlobalConstants.generateStudentId();
         this.courseIds = new HashSet<>();
         this.gradeIds = new HashSet<>();

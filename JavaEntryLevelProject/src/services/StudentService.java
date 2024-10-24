@@ -1,5 +1,6 @@
 package services;
 
+import constants.GlobalConstants;
 import models.courses.Course;
 import models.courses.Homework;
 import models.users.Student;
@@ -57,7 +58,8 @@ public class StudentService implements StudentServiceInterface {
             throw new IllegalArgumentException("Student is not enrolled in the course.");
         }
 
-        Homework homework = new Homework(title, description, courseId, studentId, LocalDate.now().plusWeeks(1));
+        int homeWorkId = GlobalConstants.generateHomeworkId();
+        Homework homework = new Homework(homeWorkId, title, description, courseId, studentId, LocalDate.now().plusWeeks(1));
         homeworkRepository.addHomework(homework);
         course.addHomeworkId(homework.getId());
 

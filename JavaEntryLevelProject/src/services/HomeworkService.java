@@ -1,5 +1,6 @@
 package services;
 
+import constants.GlobalConstants;
 import models.courses.Homework;
 import repositories.interfaces.CourseRepositoryInterface;
 import repositories.interfaces.HomeworkRepositoryInterface;
@@ -22,8 +23,8 @@ public class HomeworkService implements HomeworkServiceInterface {
         if (courseRepository.getCourseById(courseId) == null) {
             throw new IllegalArgumentException("Course not found.");
         }
-
-        Homework homework = new Homework(title, description, courseId, studentId, LocalDate.now().plusWeeks(1));
+        int homeWorkId = GlobalConstants.generateHomeworkId();
+        Homework homework = new Homework(homeWorkId, title, description, courseId, studentId, LocalDate.now().plusWeeks(1));
         homeworkRepository.addHomework(homework);
     }
 

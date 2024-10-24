@@ -1,7 +1,5 @@
 package models.courses;
 
-import constants.GlobalConstants;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,8 +13,8 @@ public class Course {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Course(String courseName, int teacherId, LocalDate startDate, LocalDate endDate) {
-        this.id = GlobalConstants.generateCourseId();
+    public Course(int id, String courseName, int teacherId, LocalDate startDate, LocalDate endDate) {
+        this.id = id;
         this.courseName = courseName;
         this.teacherId = teacherId;
         this.startDate = startDate;

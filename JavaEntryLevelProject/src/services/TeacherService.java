@@ -1,5 +1,6 @@
 package services;
 
+import constants.GlobalConstants;
 import models.courses.Course;
 import models.courses.Homework;
 import models.users.Teacher;
@@ -34,7 +35,8 @@ public class TeacherService implements TeacherServiceInterface {
 
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);
-        Course course = new Course(courseName, teacherId, start, end);
+        int courseId = GlobalConstants.generateCourseId();
+        Course course = new Course(courseId, courseName, teacherId, start, end);
         courseRepository.addCourse(course);
         teacher.addCourseId(course.getId());
 
@@ -50,7 +52,8 @@ public class TeacherService implements TeacherServiceInterface {
             throw new IllegalArgumentException("Teacher not found or does not teach this course.");
         }
 
-        Homework homework = new Homework(title, description, courseId, -1, LocalDate.now().plusWeeks(1)); // Student ID not needed for creation
+        int homeWorkId = GlobalConstants.generateHomeworkId();
+        Homework homework = new Homework(homeWorkId, title, description, courseId, -1, LocalDate.now().plusWeeks(1)); // Student ID not needed for creation
         homeworkRepository.addHomework(homework);
         course.addHomeworkId(homework.getId());
 

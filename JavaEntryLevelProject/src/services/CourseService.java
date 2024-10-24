@@ -1,5 +1,6 @@
 package services;
 
+import constants.GlobalConstants;
 import models.courses.Course;
 import models.courses.Homework;
 import repositories.interfaces.CourseRepositoryInterface;
@@ -30,7 +31,8 @@ public class CourseService implements CourseServiceInterface {
 
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);
-        Course course = new Course(courseName, teacherId, start, end);
+        int courseId = GlobalConstants.generateCourseId();
+        Course course = new Course(courseId, courseName, teacherId, start, end);
         courseRepository.addCourse(course);
         return course;
     }

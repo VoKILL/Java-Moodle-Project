@@ -7,8 +7,8 @@ public class Teacher extends User {
     private String subject;
     private Set<Integer> courseIds;
 
-    public Teacher(String email, String password, String subject) {
-        super(email, password);
+    public Teacher(int id, String email, String password, String subject) {
+        super(id, email, password);
         this.subject = subject;
         this.courseIds = new HashSet<>();
     }
