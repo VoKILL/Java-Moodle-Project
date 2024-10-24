@@ -7,12 +7,12 @@ import services.interfaces.AuthenticationServiceInterface;
 
 public class AuthenticationService implements AuthenticationServiceInterface {
     private UserRepositoryInterface userRepository;
-    private AuthenticationRepositoryInterface authenticatedUserRepository;
+    private AuthenticationRepositoryInterface authenticationRepository;
 
     public AuthenticationService(UserRepositoryInterface userRepository,
-                                 AuthenticationRepositoryInterface authenticatedUserRepository) {
+                                 AuthenticationRepositoryInterface authenticationRepository) {
         this.userRepository = userRepository;
-        this.authenticatedUserRepository = authenticatedUserRepository;
+        this.authenticationRepository = authenticationRepository;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         for (User user : userRepository.getAllUsers().values()) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 String token = generateToken(user.getId());
-                authenticatedUserRepository.addAuthenticatedUser(user.getId(), token);
+                authenticationRepository.addAuthenticatedUser(user.getId(), token);
                 return true;
             }
         }
@@ -29,12 +29,12 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
     @Override
     public void logout(int userId) {
-        authenticatedUserRepository.removeAuthenticatedUser(userId);
+        authenticationRepository.removeAuthenticatedUser(userId);
     }
 
     @Override
     public boolean isAuthenticated(int userId) {
-        return authenticatedUserRepository.isAuthenticated(userId);
+        return authenticationRepository.isAuthenticated(userId);
     }
 
     private String generateToken(int userId) {

@@ -7,4 +7,5 @@ public interface HomeworkServiceInterface {
     void submitHomework(int homeworkId);
     void gradeHomework(int homeworkId, double grade);
     Homework viewHomework(int homeworkId);
+    void viewHomeworkByStudentAndCourse(int studentId, int courseId);
 }

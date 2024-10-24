@@ -2,29 +2,23 @@ package services;
 
 import constants.GlobalConstants;
 import models.courses.Homework;
-import repositories.interfaces.CourseRepositoryInterface;
 import repositories.interfaces.HomeworkRepositoryInterface;
 import services.interfaces.HomeworkServiceInterface;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class HomeworkService implements HomeworkServiceInterface {
     private HomeworkRepositoryInterface homeworkRepository;
-    private CourseRepositoryInterface courseRepository;
 
-    public HomeworkService(HomeworkRepositoryInterface homeworkRepository,
-                           CourseRepositoryInterface courseRepository) {
+    public HomeworkService(HomeworkRepositoryInterface homeworkRepository) {
         this.homeworkRepository = homeworkRepository;
-        this.courseRepository = courseRepository;
     }
 
     @Override
     public void createHomework(String title, String description, int courseId, int studentId) {
-        if (courseRepository.getCourseById(courseId) == null) {
-            throw new IllegalArgumentException("Course not found.");
-        }
-        int homeWorkId = GlobalConstants.generateHomeworkId();
-        Homework homework = new Homework(homeWorkId, title, description, courseId, studentId, LocalDate.now().plusWeeks(1));
+        int homeworkId = GlobalConstants.generateHomeworkId();
+        Homework homework = new Homework(homeworkId, title, description, courseId, studentId, LocalDate.now().plusWeeks(1));
         homeworkRepository.addHomework(homework);
     }
 
@@ -34,8 +28,7 @@ public class HomeworkService implements HomeworkServiceInterface {
         if (homework == null) {
             throw new IllegalArgumentException("Homework not found.");
         }
-
-        // Add logic for submission (in this case, it's as simple as confirming existence)
+        // Логика за подаване на домашно
         System.out.println("Homework with ID " + homeworkId + " has been submitted.");
     }
 
@@ -45,7 +38,6 @@ public class HomeworkService implements HomeworkServiceInterface {
         if (homework == null) {
             throw new IllegalArgumentException("Homework not found.");
         }
-
         homework.setGrade(grade);
         homeworkRepository.updateHomework(homeworkId, homework);
     }
@@ -57,5 +49,15 @@ public class HomeworkService implements HomeworkServiceInterface {
             throw new IllegalArgumentException("Homework not found.");
         }
         return homework;
+    }
+
+    @Override
+    public void viewHomeworkByStudentAndCourse(int studentId, int courseId) {
+        Map<Integer, Homework> allHomeworks = homeworkRepository.getAllHomeworks();
+        for (Homework homework : allHomeworks.values()) {
+            if (homework.getStudentId() == studentId && homework.getCourseId() == courseId) {
+                System.out.println("Homework: " + homework.getTitle() + " - " + homework.getDescription());
+            }
+        }
     }
 }
