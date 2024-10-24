@@ -1,7 +1,6 @@
 package services;
 
 import models.users.User;
-import repositories.DatabaseSimulator;
 import repositories.interfaces.UserRepositoryInterface;
 import services.interfaces.AuthenticationServiceInterface;
 

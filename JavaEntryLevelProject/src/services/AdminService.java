@@ -8,11 +8,9 @@ import services.interfaces.AdminServiceInterface;
 
 public class AdminService implements AdminServiceInterface {
     private UserRepositoryInterface userRepository;
-    private CourseRepositoryInterface courseRepository;
 
-    public AdminService(UserRepositoryInterface userRepository, CourseRepositoryInterface courseRepository) {
+    public AdminService(UserRepositoryInterface userRepository) {
         this.userRepository = userRepository;
-        this.courseRepository = courseRepository;
     }
 
     @Override
