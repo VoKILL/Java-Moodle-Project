@@ -1,21 +1,18 @@
 package services;
 
 import models.users.User;
+import repositories.interfaces.AuthenticationRepositoryInterface;
 import repositories.interfaces.UserRepositoryInterface;
 import services.interfaces.AuthenticationServiceInterface;
 
-import java.util.HashMap;
-import java.util.Map;
-
-
 public class AuthenticationService implements AuthenticationServiceInterface {
-    private Map<Integer, String> authenticatedUsers;
     private UserRepositoryInterface userRepository;
+    private AuthenticationRepositoryInterface authenticatedUserRepository;
 
-
-    public AuthenticationService(UserRepositoryInterface userRepository) {
+    public AuthenticationService(UserRepositoryInterface userRepository,
+                                 AuthenticationRepositoryInterface authenticatedUserRepository) {
         this.userRepository = userRepository;
-        this.authenticatedUsers = new HashMap<>();
+        this.authenticatedUserRepository = authenticatedUserRepository;
     }
 
     @Override
@@ -23,7 +20,7 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         for (User user : userRepository.getAllUsers().values()) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 String token = generateToken(user.getId());
-                authenticatedUsers.put(user.getId(), token);
+                authenticatedUserRepository.addAuthenticatedUser(user.getId(), token);
                 return true;
             }
         }
@@ -32,12 +29,12 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
     @Override
     public void logout(int userId) {
-        authenticatedUsers.remove(userId);
+        authenticatedUserRepository.removeAuthenticatedUser(userId);
     }
 
     @Override
     public boolean isAuthenticated(int userId) {
-        return authenticatedUsers.containsKey(userId);
+        return authenticatedUserRepository.isAuthenticated(userId);
     }
 
     private String generateToken(int userId) {

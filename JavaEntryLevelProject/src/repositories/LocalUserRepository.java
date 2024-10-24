@@ -1,16 +1,19 @@
 package repositories;
 
-import models.users.User;
+import repositories.interfaces.AuthenticationRepositoryInterface;
 import repositories.interfaces.UserRepositoryInterface;
+import models.users.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LocalUserRepository implements UserRepositoryInterface {
+public class LocalUserRepository implements UserRepositoryInterface, AuthenticationRepositoryInterface {
     private Map<Integer, User> users;
+    private Map<Integer, String> authenticatedUsers;
 
     public LocalUserRepository() {
         this.users = new HashMap<>();
+        this.authenticatedUsers = new HashMap<>();
     }
 
     @Override
@@ -36,5 +39,20 @@ public class LocalUserRepository implements UserRepositoryInterface {
     @Override
     public void deleteUser(int userId) {
         users.remove(userId);
+    }
+
+    @Override
+    public void addAuthenticatedUser(int userId, String token) {
+        authenticatedUsers.put(userId, token);
+    }
+
+    @Override
+    public void removeAuthenticatedUser(int userId) {
+        authenticatedUsers.remove(userId);
+    }
+
+    @Override
+    public boolean isAuthenticated(int userId) {
+        return authenticatedUsers.containsKey(userId);
     }
 }
